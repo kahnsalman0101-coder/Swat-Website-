@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { UNIVERSITY, siteSearch } from '../../utils/constants.js';
 import './Hero.css';
@@ -21,16 +21,28 @@ const NOTICES = [
   }
 ];
 
-/**
- * Home hero: the University name and motto in an off-white field with a
- * CSS-only crest, a search field that hands off to the programme directory,
- * and links to the notices the University actually publishes.
- *
- * @param {{ lede?: string }} props First paragraph of the About University page.
- */
+// Add your university image URLs here (place your images in the `public` folder)
+const IMAGES = [
+  '/public/images (1).jfif',
+  '/public/images (2).jfif',
+  '/public/images (3).jfif',
+  '/public/images (4).jfif',
+  
+];
+
 export default function Hero({ lede = '' }) {
   const [term, setTerm] = useState('');
+  const [currentSlide, setCurrentSlide] = useState(0);
   const navigate = useNavigate();
+
+  // Auto-play slider effect
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev === IMAGES.length - 1 ? 0 : prev + 1));
+    }, 5000); // Changes image every 5 seconds
+
+    return () => clearInterval(timer); // Cleanup on unmount
+  }, []);
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -86,11 +98,29 @@ export default function Hero({ lede = '' }) {
           </div>
         </div>
 
-        <div className="gp-hero__media" aria-hidden="true">
-          <div className="gp-hero__crest">
-            <span className="gp-hero__crest-initials"></span>
-            <span className="gp-hero__crest-rule" />
-            <span className="gp-hero__crest-year">{UNIVERSITY.established}</span>
+        {/* REPLACED CREST WITH IMAGE SLIDER */}
+        <div className="gp-hero__media">
+          <div className="gp-slider">
+            {IMAGES.map((img, index) => (
+              <div
+                key={index}
+                className={`gp-slide ${index === currentSlide ? 'active' : ''}`}
+              >
+                <img src={img} alt={`University Campus ${index + 1}`} />
+              </div>
+            ))}
+            
+            {/* Navigation Dots */}
+            <div className="gp-slider-dots">
+              {IMAGES.map((_, index) => (
+                <button
+                  key={index}
+                  className={`gp-dot ${index === currentSlide ? 'active' : ''}`}
+                  onClick={() => setCurrentSlide(index)}
+                  aria-label={`Go to slide ${index + 1}`}
+                />
+              ))}
+            </div>
           </div>
         </div>
       </div>
