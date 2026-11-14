@@ -23,11 +23,10 @@ const NOTICES = [
 
 // Add your university image URLs here (place your images in the `public` folder)
 const IMAGES = [
-  '/public/images (1).jfif',
-  '/public/images (2).jfif',
-  '/public/images (3).jfif',
-  '/public/images (4).jfif',
-  
+  '/images (1).jfif',
+  '/images (2).jfif',
+  '/images (3).jfif',
+  '/images (4).jfif'
 ];
 
 export default function Hero({ lede = '' }) {

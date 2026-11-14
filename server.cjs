@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors');
+const path = require('path'); // Added path module
 
 const app = express();
 app.use(cors());
@@ -54,10 +55,26 @@ app.get('/api/programs', (req, res) => {
 
 // 5. Dynamic Pages (VC Message, About, etc.)
 app.get('/api/pages/:slug', (req, res) => {
-  res.json({
-    title: req.params.slug === 'vice-chancellors-message' ? 'Message from the Vice Chancellor' : 'About University of Swat',
-    content: "Welcome to the University of Swat. This is placeholder content that will eventually come from MySQL."
-  });
+  // Make sure the slugs match exactly what your frontend is requesting
+  const slug = req.params.slug;
+  
+  if (slug === 'vice-chancellors-message') {
+    res.json({
+      title: "Message from the Vice Chancellor",
+      content: "Welcome to the University of Swat. This is the official message from the Vice Chancellor. (Placeholder content)"
+    });
+  } else if (slug === 'about-university') {
+    res.json({
+      title: "About University of Swat",
+      content: "The University of Swat is a public sector university located in the scenic valley of Swat, Khyber Pakhtunkhwa. (Placeholder content)"
+    });
+  } else {
+    // Default fallback for any other page
+    res.json({
+      title: "Page Not Found",
+      content: "The page you are looking for does not exist."
+    });
+  }
 });
 
 // 6. Content (News, Announcements, Events)
