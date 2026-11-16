@@ -2,6 +2,8 @@ import { Link } from 'react-router-dom';
 import { QUICK_MENU, SERVICE_LINKS, UNIVERSITY } from '../../utils/constants.js';
 import './SiteFooter.css';
 
+const CURRENT_YEAR = new Date().getFullYear();
+
 /** A quick-menu entry is either an internal route (`to`) or an external URL. */
 function QuickMenuLink({ item }) {
   if (item.to) {
@@ -19,8 +21,6 @@ function QuickMenuLink({ item }) {
 }
 
 export default function SiteFooter() {
-  const year = new Date().getFullYear();
-
   return (
     <footer className="site-footer">
       <div className="gp-container site-footer__top">
@@ -137,7 +137,7 @@ export default function SiteFooter() {
       <div className="site-footer__strip">
         <div className="gp-container site-footer__strip-inner">
           <p className="site-footer__copyright">
-            &copy; {year} University of Swat. Editorial content and programme details are
+            &copy; {CURRENT_YEAR} University of Swat. Editorial content and programme details are
             sourced from{' '}
             <a
               className="site-footer__link"

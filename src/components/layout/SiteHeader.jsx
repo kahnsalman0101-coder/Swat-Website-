@@ -121,18 +121,20 @@ export default function SiteHeader() {
                           ) : (
                             faculties.map((faculty) => (
                               <li key={faculty.slug}>
-                                <Link
+                                <a
                                   className="site-header__mega-card"
-                                  to={`/programs?faculty=${faculty.slug}`}
+                                  href={faculty.url}
+                                  target="_blank"
+                                  rel="noreferrer"
                                 >
                                   <span className="site-header__mega-name">
                                     {faculty.shortName || faculty.name}
                                   </span>
                                   <span className="site-header__mega-meta">
-                                    {faculty.departments.length} departments &middot;{' '}
-                                    {faculty.programCount} programmes
+                                    {faculty.departments.length}{' '}
+                                    {faculty.departments.length === 1 ? 'department' : 'departments'}
                                   </span>
-                                </Link>
+                                </a>
                               </li>
                             ))
                           )}

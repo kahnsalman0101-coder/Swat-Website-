@@ -10,7 +10,7 @@ import {
 /**
  * Loads a page of editorial content, optionally narrowed to one category.
  *
- * @param {{ category?: string, q?: string, page?: number, limit?: number }} query
+ * @param {{ category?: string|string[], q?: string, page?: number, limit?: number }} query
  * @returns {{ items: object[], meta: object|null, counts: object|null, categories: object[], loading: boolean, error: Error|null, reload: () => void }}
  */
 export function useContent(query = {}) {

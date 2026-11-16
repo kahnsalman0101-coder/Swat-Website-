@@ -23,7 +23,9 @@ export function fetchPages(signal) {
 }
 
 /**
- * GET /api/pages/:slug — a single long-form page with its body.
+ * GET /api/pages/:slug — a single long-form page with its body. The `home`
+ * page also includes structured homepage details extracted from its published
+ * WordPress content.
  *
  * @param {string} slug
  * @param {AbortSignal} [signal]

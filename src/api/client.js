@@ -21,16 +21,16 @@ export async function apiRequest(path, options = {}) {
     });
   } catch (networkError) {
     if (networkError.name === 'AbortError') throw networkError;
-    throw new Error(
-      'Unable to reach the programs service. Confirm the API server is running on port 5000.'
-    );
+    throw new Error('Unable to reach the API service. Confirm the API server is running.');
   }
 
   let payload = null;
   try {
     payload = await response.json();
-  } catch {
-    payload = null;
+  } catch (parseError) {
+    if (response.ok) {
+      throw new Error('The API returned an invalid JSON response.', { cause: parseError });
+    }
   }
 
   if (!response.ok) {

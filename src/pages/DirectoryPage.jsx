@@ -61,11 +61,9 @@ function filterLabel(key, value, facets) {
 }
 
 /**
- * Programme directory at /programs. The complete view state — search text,
- * sort, page and every multi-select filter — lives in the URL query string, so
- * any filtered list is shareable and survives a reload. The header mega-menu
- * links to /programs?faculty=<slug> and the footer links to
- * /programs?campus=<slug>, both of which this page reads out of the URL.
+ * The complete view state — search text, sort, page and available multi-select
+ * filters — lives in the URL query string, so the view is shareable and
+ * survives a reload.
  */
 export default function DirectoryPage() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -140,10 +138,10 @@ export default function DirectoryPage() {
             <i className="bi bi-mortarboard" aria-hidden="true" />
             Programme directory
           </p>
-          <h1 className="gp-directory__title">Programmes at the University of Swat</h1>
+          <h1 className="gp-directory__title">Programme pages published by the University of Swat</h1>
           <p className="gp-lede">
-            Search and filter the university&rsquo;s undergraduate, MS/MPhil and doctoral
-            programmes by faculty, department, campus and keyword.
+            Search the degree pages published on the University&rsquo;s official website.
+            Degree details and availability are maintained by the University.
           </p>
 
           <div className="gp-directory__actions">

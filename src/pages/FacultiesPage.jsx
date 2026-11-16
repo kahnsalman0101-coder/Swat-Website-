@@ -68,12 +68,17 @@ export default function FacultiesPage() {
                       <span>{pluralize(faculty.programCount, 'programme')}</span>
                     )}
                   </p>
-                  <Link
-                    className="gp-btn gp-btn--green gp-btn--sm"
-                    to={`/programs?faculty=${encodeURIComponent(faculty.slug)}`}
-                  >
-                    Browse programmes
-                  </Link>
+                  {faculty.url && (
+                    <a
+                      className="gp-btn gp-btn--green gp-btn--sm"
+                      href={faculty.url}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      Faculty page on uswat.edu.pk
+                      <i className="bi bi-box-arrow-up-right" aria-hidden="true" />
+                    </a>
+                  )}
                 </header>
 
                 {faculty.departments && faculty.departments.length > 0 ? (
@@ -89,24 +94,32 @@ export default function FacultiesPage() {
                                 {department.campus}
                               </span>
                             )}
-                            <span>
-                              {typeof department.programCount === 'number' && department.programCount > 0
-                                ? pluralize(department.programCount, 'programme')
-                                : 'No programmes listed'}
-                            </span>
+                            {typeof department.programCount === 'number' && (
+                              <span>
+                                {department.programCount > 0
+                                  ? pluralize(department.programCount, 'programme')
+                                  : 'No programmes listed'}
+                              </span>
+                            )}
                           </p>
                         </div>
-                        <div className="gp-department__actions">
-                          <Link to={`/programs?department=${encodeURIComponent(department.slug)}`}>
-                            View programmes
-                          </Link>
-                          {department.url && (
-                            <a href={department.url} target="_blank" rel="noreferrer">
-                              Department page on uswat.edu.pk
-                              <i className="bi bi-box-arrow-up-right" aria-hidden="true" />
-                            </a>
-                          )}
-                        </div>
+                        {(department.programCount > 0 || department.url) && (
+                          <div className="gp-department__actions">
+                            {department.programCount > 0 && (
+                              <Link
+                                to={`/programs?department=${encodeURIComponent(department.slug)}`}
+                              >
+                                View programmes
+                              </Link>
+                            )}
+                            {department.url && (
+                              <a href={department.url} target="_blank" rel="noreferrer">
+                                Department page on uswat.edu.pk
+                                <i className="bi bi-box-arrow-up-right" aria-hidden="true" />
+                              </a>
+                            )}
+                          </div>
+                        )}
                       </li>
                     ))}
                   </ul>

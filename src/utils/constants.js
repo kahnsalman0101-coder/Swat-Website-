@@ -171,8 +171,6 @@ export const SORT_OPTIONS = [
   { value: 'title', label: 'Programme (A–Z)' },
   { value: 'title_desc', label: 'Programme (Z–A)' },
   { value: 'degree', label: 'Degree type' },
-  { value: 'department', label: 'Department' },
-  { value: 'campus', label: 'Campus' },
   { value: 'newest', label: 'Recently added' }
 ];
 

@@ -1,5 +1,3 @@
-import { Link } from 'react-router-dom';
-
 import Breadcrumbs from '../components/common/Breadcrumbs.jsx';
 import LoadingState from '../components/common/LoadingState.jsx';
 import EmptyState from '../components/common/EmptyState.jsx';
@@ -62,14 +60,8 @@ export default function CampusesPage() {
                   </ul>
                 )}
 
-                <div className="gp-campus__actions">
-                  <Link
-                    className="gp-btn gp-btn--green gp-btn--sm"
-                    to={`/programs?campus=${encodeURIComponent(campus.slug)}`}
-                  >
-                    Browse programmes
-                  </Link>
-                  {campus.url && (
+                {campus.url && (
+                  <div className="gp-campus__actions">
                     <a
                       className="gp-campus__external"
                       href={campus.url}
@@ -79,8 +71,8 @@ export default function CampusesPage() {
                       Campus page on uswat.edu.pk
                       <i className="bi bi-box-arrow-up-right" aria-hidden="true" />
                     </a>
-                  )}
-                </div>
+                  </div>
+                )}
               </article>
             ))}
           </div>
